@@ -10,9 +10,14 @@
 <title>My Page</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 	<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'/>
-	<link rel='stylesheet' href='/desktop/resources/css/index.css' />
-	<link rel='stylesheet' href='/desktop/resources/css/component.css' />
-	<link rel='stylesheet' href='/desktop/resources/css/member.css' />
+	<link rel='stylesheet' href='/desktop/resources/css/index_large.css' media='screen and (min-width: 800px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/index_mini.css' media='screen and (max-width: 799px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/component_large.css' media='screen and (min-width: 800px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/component_mini.css' media='screen and (max-width: 799px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/member_large.css' media='screen and (min-width: 800px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/member_mini.css' media='screen and (max-width: 799px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/board_large.css' media='screen and (min-width: 800px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/board_mini.css' media='screen and (max-width: 799px)' />
 	<link rel='stylesheet' href='/desktop/resources/css/board.css' />
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -13,15 +13,15 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
-	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/chaeksang" expected-type="javax.sql.DataSource"></jee:jndi-lookup>
+	<!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/chaeksang" expected-type="javax.sql.DataSource"></jee:jndi-lookup> -->
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://my-portfolio-rds.cmpe8vjrfwwg.ap-northeast-2.rds.amazonaws.com:3306/chaeksang?characterEncoding=utf-8&amp;allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=UTC"></property>
 		<property name="username" value="daesungra"></property>
 		<property name="password" value="retonago1579$"></property>
-	</bean> -->
+	</bean>
 	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean" destroy-method="close">
 		<property name="jndiName" value="java:/comp/env/jdbc/chaeksang"></property>
 		<property name="resourceRef" value="true" />

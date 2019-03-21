@@ -14,8 +14,10 @@
 	<link rel='stylesheet' href='https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css'>
 	<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'/>
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css'>
-	<link rel='stylesheet' href='/desktop/resources/css/boardListPage.css' />
-	<link rel='stylesheet' href='/desktop/resources/css/component.css' />
+	<link rel='stylesheet' href='/desktop/resources/css/component_large.css' media='screen and (min-width: 800px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/component_mini.css' media='screen and (max-width: 799px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/boardListPage_large.css' media='screen and (min-width: 800px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/boardListPage_mini.css' media='screen and (max-width: 799px)' />
 	
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js'></script>
