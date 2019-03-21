@@ -1,0 +1,110 @@
+/*
+ * 작성자: 라대성
+ * 작성일: 190209
+ * 기능: index 페이지에 대한 스타일 모음
+ */
+
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo');
+
+/* font */
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'Nanum Myeongjo', serif;
+	font-weight: bolder;
+}
+
+/*
+ * article style
+ */
+#article #introducePart {
+	width: 90%;
+	margin: 0 auto;
+}
+.my-index-article {
+	
+}
+.my-index-article .my-index-article-row {
+	height: 500px;
+	text-align: center;
+	/* border: 1px solid blue; */
+}
+.my-index-article-detail .my-index-article-row {
+	height: 500px;
+	text-align: center;
+	/* border: 1px solid blue; */
+}
+.my-index-article .my-index-article-col {
+	/* border: 1px solid black; */
+}
+.my-index-article .my-index-article-row > div {
+	padding-top: 110px;
+	/* border: 1px solid black; */
+}
+.my-index-article-detail .my-index-article-row > div {
+	
+}
+.my-index-article .my-index-article-row > div:hover {
+	background-color: #eee;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	cursor: pointer;
+}
+.my-index-article-detail .my-index-article-row > div:hover {
+	background-color: #eee;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	cursor: pointer;
+}
+.my-index-article .my-index-article-row span {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+.my-index-article-detail .my-index-article-row span {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+.my-index-article .introImg {
+	width: 160px;
+	height: 130px;
+	border: 1px solid #ababab;
+	border-radius: 120px;
+}
+.my-index-article-detail {
+	background-color: #fff;
+	border-left: 1px solid #dfdfdf;
+	border-right: 1px solid #dfdfdf;
+}
+.my-index-article-detail #bookImg-left {
+	background: url('/desktop/resources/imgs/sample/book-share02.jpg') no-repeat;
+	background-size: cover;
+}
+.my-index-article-detail #communication-right {
+	background: url('/desktop/resources/imgs/communication03.jpg') no-repeat;
+	background-size: cover;
+}
+.my-index-article-detail #encryption-left {
+	background: url('/desktop/resources/imgs/security01.jpg') no-repeat;
+	background-size: cover;
+}
+.my-index-article-detail #authority-right {
+	background: url('/desktop/resources/imgs/admin02.jpg') no-repeat;
+	background-size: cover;
+}
+/* dev part */
+.my-index-article-dev .my-index-article-row {
+	height: 800px;
+	text-align: center;
+	/* border: 1px solid blue; */
+}
+.my-index-article-dev .my-index-article-col {
+	/* border: 1px solid black; */
+}
+.my-index-article-dev .my-index-article-row > div {
+	padding-top: 60px;
+	/* border: 1px solid black; */
+}
+.my-index-article-dev .my-index-article-row span {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+.my-index-article-dev .dev-img {
+	width: 270px;
+	height: 500px;
+	border-radius: 100px;
+}

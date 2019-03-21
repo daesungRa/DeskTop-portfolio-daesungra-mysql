@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<!-- dboard 테이블의 blob 형식의 컬럼을 위한 resultMap 정의 -->
+	<resultMap type='com.daesungra.domain.BoardVo' id='getBoardVoIncludeBlobType'>
+		<!-- dboard -->
+		<result property='serial' column='serial' />
+		<result property='bookNo' column='bookNo' />
+		<result property='title' column='title' />
+		<result property='content' column='content' jdbcType='BLOB' javaType='java.lang.String' />
+		<result property='category' column='category' />
+		<result property='userId' column='userId' />
+		<result property='bDate' column='bDate' />
+		<result property='hit' column='hit' />
+		<result property='gSerial' column='gSerial' />
+		<result property='pSerial' column='pSerial' />
+		<result property='depth' column='depth' />
+		<result property='indent' column='indent' />
+		<result property='isDelete' column='isDelete' />
+		<result property='isBlocked' column='isBlocked' />
+		<!-- dbook -->
+		<result property='title_kor' column='title_kor' />
+		<result property='title_eng' column='title_eng' />
+		<result property='introduce' column='introduce' />
+		<result property='author' column='author' />
+		<result property='publisher' column='publisher' />
+		<result property='country' column='country' />
+		<result property='coverImg' column='coverImg' />
+		<result property='pDate' column='pDate' />
+		<!-- thumbUpCnt -->
+		<result property='thumbUpCnt' column='thumbUpCnt' />
+	</resultMap>
+
+	<!-- select list -->
+	<select id="getBoardList" parameterType="map" resultType="com.daesungra.domain.BoardVo">
+		SELECT s.* FROM (
+			SELECT bd.serial serial, bd.bookNo bookNo, bd.title title, bd.content content, bd.category category, bd.userId userId, DATE_FORMAT(bd.bDate, '%Y.%m.%d') bDate, bd.hit hit,
+					bk.title_kor title_kor, bk.title_eng title_eng, bk.author author, bk.coverImg coverImg, DATE_FORMAT(bk.pDate, '%Y') pDate, bd.isBlocked isBlocked,
+					(SELECT COUNT(*) FROM DBOARD_COMMENT cmt JOIN DBOARD bd2 ON cmt.fSerial = bd2.serial WHERE bd2.serial = bd.serial) commentCnt,
+					(SELECT COUNT(*) FROM DBOARD_THUMBUP bdt JOIN DBOARD bd3 ON bdt.pSerial = bd3.serial WHERE bd3.serial = bd.serial) thumbUpCnt
+				FROM DBOARD bd join DBOOK bk
+				ON bd.bookNo = bk.bookNo
+				<where>
+					<if test='category != null'>
+						bd.category = #{category} AND bd.isDelete = 0
+					</if>
+					<if test='search != "" and searchByContent == 1'>
+						AND bd.title like '%${search}%' AND bd.content like '%${search}%'
+					</if>
+					<if test='search != "" and searchByContent == 2'>
+						AND bd.title like '%${search}%'
+					</if>
+					<if test='search != "" and searchByContent == 3'>
+						AND bd.content like '%${search}%'
+					</if>
+					<if test='search != "" and searchByContent == 4'>
+						AND bd.userId like '%${search}%'
+					</if>
+				</where>
+				<trim prefix="ORDER BY">
+					<if test='searchBySort == 1'>
+						bd.bDate desc, bd.hit desc, thumbUpCnt desc
+					</if>
+					<if test='searchBySort == 2'>
+						bd.bDate asc, bd.hit desc, thumbUpCnt desc
+					</if>
+					<if test='searchBySort == 3'>
+						bd.hit desc, bd.bDate desc, thumbUpCnt desc
+					</if>
+					<if test='searchBySort == 4'>
+						thumbUpCnt desc, bd.bDate desc, bd.hit desc
+					</if>
+				</trim>
+			) s
+		LIMIT ${startNo}, ${listSize}
+	</select>
+	<!-- board list pagenation -->
+	<select id="boardListPagenation" parameterType="map" resultType="int">
+		SELECT COUNT(*) cnt
+			FROM DBOARD bd JOIN DBOOK bk
+			ON bd.bookNo = bk.bookNo
+			<choose>
+				<when test='category != null'>
+					WHERE bd.category = #{category} AND bd.isDelete = 0
+				</when>
+				<when test='search != "" and searchByContent == 1'>
+					WHERE bd.title like '%${search}%' AND bd.content like '%${search}%'
+				</when>
+				<when test='search != "" and searchByContent == 2'>
+					WHERE bd.title like '%${search}%'
+				</when>
+				<when test='search != "" and searchByContent == 3'>
+					WHERE bd.content like '%${search}%'
+				</when>
+				<when test='search != "" and searchByContent == 4'>
+					WHERE bd.userId like '%${search}%'
+				</when>
+			</choose>
+			<!-- <where>
+				<if test='category != null'>
+					bd.category = #{category} AND bd.isDelete = 0
+				</if>
+				<if test='search != "" and searchByContent == 1'>
+					AND bd.title like '%${search}%' AND bd.content like '%${search}%'
+				</if>
+				<if test='search != "" and searchByContent == 2'>
+					AND bd.title like '%${search}%'
+				</if>
+				<if test='search != "" and searchByContent == 3'>
+					AND bd.content like '%${search}%'
+				</if>
+				<if test='search != "" and searchByContent == 4'>
+					AND bd.userId like '%${search}%'
+				</if>
+			</where> -->
+	</select>
+	
+	<!-- select book info -->
+	<select id="selectBookInfo" parameterType="String" resultType="com.daesungra.domain.BookVo">
+		SELECT bookNo, title_kor, title_eng, introduce, author, category, publisher, country, coverImg, DATE_FORMAT(pDate, '%Y') pDate, isPermitted
+			FROM DBOOK
+			WHERE (bookNo like '%${_parameter}%' or title_kor like '%${_parameter}%' or title_eng like '%${_parameter}%' or introduce like '%${_parameter}%' or author like '%${_parameter}%')
+				AND isPermitted = 1
+	</select>
+	
+	<!-- insert book info -->
+	<insert id='insertBookInfo' parameterType='com.daesungra.domain.BookVo'>
+		insert into DBOOK (bookNo, title_kor, title_eng, introduce, author, category, publisher, country, coverImg, coverImgOri, pDate, isPermitted, userId)
+			values (#{bookNo}, #{title_kor}, #{title_eng}, #{introduce}, #{author}, #{category}, #{publisher}, #{country}, #{coverImg}, #{coverImgOri}, CURRENT_TIMESTAMP, #{isPermitted}, #{userId})
+	</insert>
+	
+	<!-- select board -->
+	<select id="selectBoardInfo" parameterType="com.daesungra.domain.BoardVo" resultType="com.daesungra.domain.BoardVo">
+		SELECT bd.serial serial, bd.bookNo bookNo, bd.title title, bd.content content, bd.category category, bd.userId userId, DATE_FORMAT(bd.bDate, '%Y.%m.%d') bDate, bd.hit hit,
+				bk.title_kor title_kor, bk.title_eng title_eng, bk.author author, bk.coverImg coverImg, DATE_FORMAT(bk.pDate, '%Y') pDate, bd.isBlocked isBlocked,
+				(SELECT COUNT(*) FROM DBOARD_COMMENT cmt JOIN DBOARD bd2 ON cmt.fSerial = bd2.serial WHERE bd2.serial = bd.serial) commentCnt,
+				(SELECT COUNT(*) FROM DBOARD_THUMBUP bdt JOIN DBOARD bd3 ON bdt.pSerial = bd3.serial WHERE bd3.serial = bd.serial) thumbUpCnt
+				<if test='userId != null'>
+					, (SELECT COUNT(*) FROM DBOARD_THUMBUP WHERE pSerial = bd.serial AND userId = #{userId}) isThumbUp
+				</if>
+			FROM DBOARD bd JOIN DBOOK bk
+			ON bd.bookNo = bk.bookNo
+			<where>
+				<if test="serial != null">
+					bd.serial = #{serial} AND bd.isDelete = 0 <!-- 시리얼 넘버로 조회 -->
+				</if>
+				<if test="userId != null and bookNo != null and category != null and title != null"> <!-- 쓰기 이후 시리얼 조회를 위함 -->
+					AND bd.userId = #{userId} AND bd.bookNo = #{bookNo} AND bd.category = #{category} AND bd.title = #{title}
+				</if>
+			</where>
+	</select>
+	<update id="boardHitIncrement" parameterType="com.daesungra.domain.BoardVo">
+		UPDATE DBOARD SET hit = hit + 1
+			<where>
+				<if test="serial != null">
+					serial = #{serial}
+				</if>
+				<if test="userId != null">
+					AND userId != #{userId}
+				</if>
+			</where>
+	</update>
+	
+	<!-- board insert -->
+	<insert id="insertBoardInfo" parameterType="com.daesungra.domain.BoardVo">
+		<!-- auto increment serial 제외 -->
+		<!-- currval 은 현재 board 테이블의 max(serial) 값을 구해와 + 1 한 수이다 (1씩 증가하므로) -->
+		INSERT INTO DBOARD (userId, delUserId, bookNo, delBookNo, category, title, content, gSerial, pSerial, depth, indent, bDate, hit, isDelete, isBlocked)
+			VALUES (#{userId}, #{userId}, #{bookNo}, #{bookNo}, #{category}, #{title}, #{content}, (SELECT max(serial) + 1 FROM DBOARD subBoard), 0, 0, 0, CURRENT_TIMESTAMP, 0, 0, 0)
+	</insert>
+	
+	<!-- board update -->
+	<update id="boardUpdate" parameterType="com.daesungra.domain.BoardVo">
+		UPDATE DBOARD SET title = #{title}, content = #{content}
+			WHERE serial = #{serial} AND userId = #{userId} AND isDelete = 0
+	</update>
+	
+	<!-- board delete -->
+	<update id="boardDelete" parameterType="com.daesungra.domain.BoardVo">
+		UPDATE DBOARD SET isDelete = 1 WHERE serial = #{serial} AND userId = #{userId}
+	</update>
+	
+	<!-- board report (신고글 등록) -->
+	<insert id='boardReportInsert' parameterType='com.daesungra.domain.BoardReportVo'>
+		INSERT INTO DBOARD_REPORTLIST (rUserId, fSerial, rContent, isDelete, gSerial, pSerial, depth, indent, rDate, reportType)
+			VALUES (#{rUserId}, #{fSerial}, #{rContent}, 0, (SELECT max(serial) + 1 FROM DBOARD_REPORTLIST subReportList), 0, 0, 0, CURRENT_TIMESTAMP, #{reportType})
+	</insert>
+	
+	<!-- 게시글 추천 -->
+	<insert id='boardThumbUp' parameterType='com.daesungra.domain.BoardVo'>
+		INSERT INTO DBOARD_THUMBUP (pSerial, userId)
+			VALUES (#{serial}, #{userId})
+	</insert>
+	
+	<!-- 게시글 추천 해제 -->
+	<delete id='boardThumbUpFree' parameterType='com.daesungra.domain.BoardVo'>
+		DELETE FROM DBOARD_THUMBUP
+			WHERE pSerial = #{serial} and userId = #{userId}
+	</delete>
+	
+</mapper>
