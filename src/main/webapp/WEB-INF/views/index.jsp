@@ -27,6 +27,10 @@
 		window size : 
 	</div> -->
 	
+	<c:if test='${not empty notLoginMsg }'>
+		<script>alert('${notLoginMsg}');</script>
+	</c:if>
+	
 	<!-- top -->
 	<jsp:include page="/WEB-INF/views/component/top.jsp"></jsp:include>
 	
@@ -117,7 +121,7 @@
 					<span style='font-size: 12pt;'>USER PASSWORD = 해싱된 문자열 + 무작위 해싱 문자열 (SALT)</span><br/><br/>
 					<span style='font-size: 18pt;'>Email Authentication</span><br/>
 					<span style='font-size: 12pt;'>가입시 입력한 이메일 정보를 활용한 아이디 / 비밀번호 찾기</span><br/><br/>
-					<a class='btn btn-xs btn-dark' href='#dev'>샘플 코드 보기</a>
+					<a class='btn btn-xs btn-dark' id='showSampleSecurityCode' href='#dev'>샘플 코드 보기</a>
 				</div>
 			</div>
 		</div>
@@ -146,7 +150,7 @@
 				<div class='col-md-4' id='dev-centerImg' style='text-align: right; padding: 120px 60px 0 0; /* border: 1px solid black; */'>
 					<img src='/desktop/resources/imgs/my-img01.jpg' class='dev-img' id='dev-img' alt='dev-img' /><br/><br/>
 				</div>
-				<div class='col-md-6' id='dev-centerIntro' style='text-align: left; padding: 60px 0 0 40px; /* border: 1px solid black; */'>
+				<div class='col-md-6' id='dev-centerIntro' style='text-align: left; padding: 70px 0 0 40px; /* border: 1px solid black; */'>
 					<div class='container-fluid'>
 						<span style='font-size: 24pt;'>개발자 소개</span><br/><br/><br/>
 						<div class='row' style='margin-bottom: 20px;'>
@@ -165,7 +169,7 @@
 								<span style='font-size: 10pt;'>OS, 배포</span>
 							</div>
 							<div class='col-md-8'>
-								<span style='font-size: 10pt;'>Ubuntu 16.04 LTS<br/>AWS EC2 + RDS<br/>Git, Github</span>
+								<span style='font-size: 10pt;'>Ubuntu 16.04 LTS<br/>AWS EC2 + RDS<br/>Git, Github - <span class='githubAnc' data-toggle='tooltip' data-placement='right' title='해당 깃헙 페이지로 이동합니다.'>소스 보기</span></span>
 							</div>
 						</div>
 						<div class='row'>
@@ -275,10 +279,10 @@
 	</article>
 	
 	<!-- guide -->
-	<a class='btn btn-secondary my-btn-guide' href='#' style='z-index: 1;'>Help</a>
+	<a class='btn btn-secondary my-btn-guide' id='guideThisPage' href='#' style='z-index: 1;' data-toggle='tooltip' data-placement='top' title='Guide this Website'>Help</a>
 	
 	<!-- button for to-top -->
-	<a class='btn btn-secondary my-btn-toTop' href='#' onclick='funcMovePage("indexTop");' style='z-index: 1;'>top</a>
+	<a class='btn btn-secondary my-btn-toTop' href='#' onclick='funcMovePage("indexTop");' style='z-index: 1;' data-toggle='tooltip' data-placement='top' title='go to header'>top</a>
 	
 	<!-- include footer -->
 	<footer style='z-index: 0;'>

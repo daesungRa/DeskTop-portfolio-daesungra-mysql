@@ -68,4 +68,11 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/getGuidePage")
+	public String getGuidePage (HttpServletRequest request) {
+		logger.info("[home controller] call guide page");
+		
+		return "component/guidePage";
+	}
+	
 }

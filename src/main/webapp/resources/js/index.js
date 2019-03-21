@@ -68,7 +68,20 @@ $(function () {
 				funcLoginAction();
 			}
 		});
-	})
+	});
+	$('.my-guide-part .loginAnc').click(function () {
+		alert();
+		$.ajax({
+			type: 'get',
+			url: '/desktop/member/loginForm',
+			dataType: 'html',
+			success: function (html, status) {
+				innerModalContent.innerHTML = html;
+				
+				funcLoginAction();
+			}
+		});
+	});
 		// 조인 모달 창 불러오기
 		// 이후 funcJoinAction 함수 실행
 	$('#joinAnc').click(function () {
@@ -83,6 +96,18 @@ $(function () {
 				funcJoinAction();
 			}
 		})
+	});
+	$('.my-guide-part .joinAnc').click(function () {
+		$.ajax({
+			type: 'get',
+			url: '/desktop/member/joinForm',
+			dataType: 'html',
+			success: function (html, status) {
+				innerModalContent.innerHTML = html;
+				
+				funcJoinAction();
+			}
+		});
 	});
 		// 로그아웃
 	$('#logoutAnc').click(function(){
@@ -147,6 +172,9 @@ $(function () {
 	});
 	
 	// 웹사이트 소개 부분
+	$('#header #header-title #site-introduce').click(function () {
+		$('body .my-btn-guide').trigger('click');
+	});
 	// 각 파트로 이동
 	$('#header #header-title #dev-introduce').click(function () {
 		funcMovePage('devPart');
@@ -166,10 +194,99 @@ $(function () {
 	
 	// guide button
 	$('body .my-btn-guide').click(function () {
-		// 모달에 가이드 출력
-		alert('guide');
+		$.ajax({
+			type: 'get',
+			url: '/desktop/getGuidePage',
+			dataType: 'html',
+			success: function (html) {				
+				innerModalContent.innerHTML = html;
+				$('#modalWindow #closeModal').css({"display":"none"});
+				$('#btnShowModal').trigger('click');
+				
+				funcRunningGuid();
+			}
+		});
+	});
+	if (getCookie('notToday') != 'Y') {
+		$('body .my-btn-guide').trigger('click');
+	}
+	
+	// 샘플 코드 보기
+	$('#article #showSampleSecurityCode').click(function () {
+		alert('(temp) sample code');
+	});
+	
+	// 깃헙 소스로 이동
+	$('.my-index-article-dev .githubAnc').click(function () {
+		window.open('https://github.com/daesungRa/DeskTop-portfolio-daesungra-mysql', '_blank');
 	});
 });
+
+function funcRunningGuid () {
+	// 시작하기 버튼을 클릭하면 모달창 꺼짐
+	$('.my-guide-part #btnGuideStart').click(function () {
+		$('#btnShowModal').trigger('click');
+	});
+	
+	// 모달에 로그인 폼 로드
+	// 이후 funcLoginAction 함수 실행
+	$('.my-guide-part .loginAnc').click(function () {
+		$.ajax({
+			type: 'get',
+			url: '/desktop/member/loginForm',
+			dataType: 'html',
+			success: function (html, status) {
+				innerModalContent.innerHTML = html;
+				
+				funcLoginAction();
+			}
+		});
+	});
+		// 조인 모달 창 불러오기
+		// 이후 funcJoinAction 함수 실행
+	$('.my-guide-part .joinAnc').click(function () {
+		$.ajax({
+			type: 'get',
+			url: '/desktop/member/joinForm',
+			dataType: 'html',
+			success: function (html, status) {
+				innerModalContent.innerHTML = html;
+				
+				funcJoinAction();
+			}
+		});
+	});
+}
+
+// 오늘하루 그만보기
+function closePopupNotToday(){	             
+	setCookie('notToday','Y', 1);
+	$('#btnShowModal').trigger('click');
+}
+function setCookie(name, value, expiredays) {
+	var today = new Date();
+	today.setDate(today.getDate() + expiredays);
+
+	document.cookie = name + '=' + escape(value) + '; path=/; expires=' + today.toGMTString() + ';'
+}
+function getCookie(name) { 
+    var cName = name + "="; 
+    var x = 0; 
+    while ( x <= document.cookie.length ) 
+    { 
+        var y = (x+cName.length); 
+        if ( document.cookie.substring( x, y ) == cName ) 
+        { 
+            if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) 
+                endOfCookie = document.cookie.length;
+            return unescape( document.cookie.substring( y, endOfCookie ) ); 
+        } 
+        x = document.cookie.indexOf( " ", x ) + 1; 
+        if ( x == 0 ) 
+            break; 
+    } 
+    return ""; 
+}
 
 /*
  * memberInfo.jsp (프로필 관리 페이지 혹은 회원정보 조회 페이지로 분기, 전자가 디폴트)

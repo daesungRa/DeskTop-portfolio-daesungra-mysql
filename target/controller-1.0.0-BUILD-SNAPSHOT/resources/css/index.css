@@ -108,3 +108,11 @@
 	height: 500px;
 	border-radius: 100px;
 }
+.my-index-article-dev .githubAnc {
+	color: #379acc;
+	font-weight: bolder;
+}
+.my-index-article-dev .githubAnc:hover {
+	color: #59dbff;
+	cursor: pointer;
+}

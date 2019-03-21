@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.daesungra.component.FileUpload;
 import com.daesungra.domain.BoardVo;
@@ -160,7 +161,7 @@ public class MemberController {
 	 * get member list
 	 */
 	@RequestMapping(value="/myPage", method=RequestMethod.GET)
-	public String getMyPage (HttpServletRequest request) {
+	public String getMyPage (HttpServletRequest request, RedirectAttributes attributes) {
 		// MemberVo vo = null;
 		logger.info("call myPage");
 		
@@ -174,6 +175,7 @@ public class MemberController {
 				request.setAttribute("bdvoList", bdvoList);
 			}
 		} else {
+			attributes.addFlashAttribute("notLoginMsg", "접속 정보가 없습니다. 로그인 후 이용하세요");
 			return "redirect:/";
 		}
 		

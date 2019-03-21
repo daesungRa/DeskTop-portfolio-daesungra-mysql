@@ -398,6 +398,54 @@
 	cursor: pointer;
 }
 
+/* guide style */
+.my-guide-part #guideTitle {
+	font-size: 22pt;
+	margin: 0 auto;
+	display: inline;
+}
+.my-guide-part #guideDesc {
+	font-size: 14pt;
+}
+.my-guide-part #guideNav {
+	font-size: 14pt;
+	margin-bottom: 10px;
+}
+.my-guide-part input {
+	margin-bottom: 5px;
+}
+.my-guide-part .findDesc {
+	font-size: 10pt;
+}
+.my-guide-part #toLoginPart {
+	float: right;
+	color: #898989;
+	font-size: 8pt;
+	text-decoration: none;
+	border-bottom: 1px solid #898989;
+}
+.my-guide-part #toLoginPart:hover {
+	color: #000;
+	border-bottom: 1px solid #000;
+	cursor: pointer;
+}
+.my-guide-part .loginAnc {
+	color: #2698cc;
+	font-weight: bolder;
+}
+.my-guide-part .loginAnc:hover {
+	color: #48caff;
+	cursor: pointer;
+}
+.my-guide-part .joinAnc {
+	color: #2698cc;
+	font-weight: bolder;
+}
+.my-guide-part .joinAnc:hover {
+	color: #48caff;
+	cursor: pointer;
+}
+
 /*
  * joinForm style
  */
