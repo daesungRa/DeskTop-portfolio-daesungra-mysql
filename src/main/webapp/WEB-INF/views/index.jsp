@@ -9,12 +9,12 @@
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 	<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'/>
-	<link rel='stylesheet' href='/desktop/resources/css/index_large.css' media='screen and (min-width: 800px)' />
-	<link rel='stylesheet' href='/desktop/resources/css/index_mini.css' media='screen and (max-width: 799px)' />
-	<link rel='stylesheet' href='/desktop/resources/css/component_large.css' media='screen and (min-width: 800px)' />
-	<link rel='stylesheet' href='/desktop/resources/css/component_mini.css' media='screen and (max-width: 799px)' />
-	<link rel='stylesheet' href='/desktop/resources/css/member_large.css' media='screen and (min-width: 800px)' />
-	<link rel='stylesheet' href='/desktop/resources/css/member_mini.css' media='screen and (max-width: 799px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/index_large.css' media='screen and (min-width: 769px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/index_mini.css' media='screen and (max-width: 768px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/component_large.css' media='screen and (min-width: 769px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/component_mini.css' media='screen and (max-width: 768px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/member_large.css' media='screen and (min-width: 769px)' />
+	<link rel='stylesheet' href='/desktop/resources/css/member_mini.css' media='screen and (max-width: 768px)' />
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
@@ -26,9 +26,9 @@
 </head>
 <body style='position: relative; height: 100%; padding-bottom: 200px; min-height: 3818px;'>	
 	<!-- 브라우저 크기 확인 (임시) -->
-	<div id='windowSize' style='width: 180px; border: 1px solid black;'>
+	<!-- <div id='windowSize' style='width: 180px; border: 1px solid black;'>
 		window size : 
-	</div>
+	</div> -->
 	
 	<c:if test='${not empty notLoginMsg }'>
 		<script>alert('${notLoginMsg}');</script>
@@ -41,7 +41,7 @@
 	<jsp:include page="/WEB-INF/views/component/navBar_top.jsp"></jsp:include>
 	
 	<!-- include header -->
-	<header id='indexHeader'>
+	<header id='indexHeader' style='z-index: 0;'>
 		<jsp:include page="/WEB-INF/views/component/header.jsp"></jsp:include>
 	</header>
 
@@ -122,9 +122,9 @@
 					<span style='font-size: 28pt;'>Security</span><br/><br/><br/>
 					<span style='font-size: 18pt;'>Hashed Password</span><br/>
 					<span style='font-size: 12pt;'>USER PASSWORD = 해싱된 문자열 + 무작위 해싱 문자열 (SALT)</span><br/><br/>
+					<a class='btn btn-xs btn-dark' id='showSampleSecurityCode' href='#dev'>샘플 코드 보기</a><br/><br/>
 					<span style='font-size: 18pt;'>Email Authentication</span><br/>
-					<span style='font-size: 12pt;'>가입시 입력한 이메일 정보를 활용한 아이디 / 비밀번호 찾기</span><br/><br/>
-					<a class='btn btn-xs btn-dark' id='showSampleSecurityCode' href='#dev'>샘플 코드 보기</a>
+					<span style='font-size: 12pt;'>가입시 입력한 이메일 정보를 활용한 아이디 / 비밀번호 찾기</span>
 				</div>
 			</div>
 		</div>
@@ -150,7 +150,7 @@
 		<div class='container-fluid my-index-article-dev' id='devPart'>
 			<div class='row my-index-article-row'>
 				<span class='col-md-2' id='dev-left'></span>
-				<div class='col-md-4' id='dev-centerImg' style='text-align: right; padding: 120px 60px 0 0; /* border: 1px solid black; */'>
+				<div class='col-md-4' id='dev-centerImg' style='text-align: right; padding: 100px 60px 0 0; /* border: 1px solid black; */'>
 					<img src='/desktop/resources/imgs/my-img01.jpg' class='dev-img' id='dev-img' alt='dev-img' /><br/><br/>
 				</div>
 				<div class='col-md-6' id='dev-centerIntro' style='text-align: left; padding: 70px 0 0 40px; /* border: 1px solid black; */'>

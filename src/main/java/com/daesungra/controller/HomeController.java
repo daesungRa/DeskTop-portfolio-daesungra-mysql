@@ -75,4 +75,11 @@ public class HomeController {
 		return "component/guidePage";
 	}
 	
+	@RequestMapping(value="/getSampleCode")
+	public String getSampleCode (HttpServletRequest request) {
+		logger.info("[home controller] call sample code");
+		
+		return "component/sampleCodePage";
+	}
+	
 }
