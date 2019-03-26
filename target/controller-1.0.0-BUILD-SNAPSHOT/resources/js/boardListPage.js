@@ -123,7 +123,6 @@ function funcBoardListPage () {
 		movePage();
 	});
 	$('#boardListSearchForm #btnBoardListSearch').click(function () {
-		alert('clicked btnBoardListSearch');
 		movePage();
 	});
 }
@@ -150,7 +149,6 @@ function movePage () {
 				movePage();
 			});
 			$('#boardListSearchForm #btnBoardListSearch').click(function () {
-				alert('clicked btnBoardListSearch');
 				movePage();
 			});
 			

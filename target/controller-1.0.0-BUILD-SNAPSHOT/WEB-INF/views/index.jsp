@@ -24,7 +24,7 @@
 	<script src='/desktop/resources/js/component.js'></script>
 	<script src='/desktop/resources/js/member.js'></script>
 </head>
-<body style='position: relative; height: 100%; padding-bottom: 200px; min-height: 3818px;'>	
+<body>
 	<!-- 브라우저 크기 확인 (임시) -->
 	<!-- <div id='windowSize' style='width: 180px; border: 1px solid black;'>
 		window size : 
@@ -82,9 +82,9 @@
 		
 		<div class='container my-index-article-detail' id='bookSharePart'>
 			<div class='row my-index-article-row'>
-				<div class='col-md-6' id='bookImg-left'>
+				<div class='col-md-6 photo' id='bookImg-left'>
 				</div>
-				<div class='col-md-6' id='bookImg-right' style='text-align: left; padding-left: 40px;'>
+				<div class='col-md-6 desc' id='bookImg-right' style='text-align: left; padding-left: 40px;'>
 					<br/><br/>
 					<span style='font-size: 28pt;'>Book Review</span><br/><br/><br/>
 					<span style='font-size: 18pt;'>Search Book</span><br/>
@@ -99,7 +99,7 @@
 		
 		<div class='container-fluid my-index-article-detail' id='communicationPart' style='width: 80%;'>
 			<div class='row my-index-article-row'>
-				<div class='col-md-6' id='communication-left'  style='text-align: right; padding-right: 40px;'>
+				<div class='col-md-6 desc' id='communication-left'  style='text-align: right; padding-right: 40px;'>
 					<br/><br/>
 					<span style='font-size: 28pt;'>Communication</span><br/><br/><br/>
 					<span style='font-size: 18pt;'>Comments</span><br/>
@@ -108,16 +108,16 @@
 					<span style='font-size: 12pt;'>리뷰에 대한 추천, 작가 구독이 가능합니다</span><br/>
 					<span style='font-size: 12pt;'>뷰, 추천이 많은 리뷰 순으로 정렬됩니다</span>
 				</div>
-				<div class='col-md-6' id='communication-right'>
+				<div class='col-md-6 photo' id='communication-right'>
 				</div>
 			</div>
 		</div>
 		
 		<div class='container-fluid my-index-article-detail' id='encryptionPart' style='width: 80%;'>
 			<div class='row my-index-article-row'>
-				<div class='col-md-6' id='encryption-left'>
+				<div class='col-md-6 photo' id='encryption-left'>
 				</div>
-				<div class='col-md-6' id='encryption-right' style='text-align: left; padding-left: 40px;'>
+				<div class='col-md-6 desc' id='encryption-right' style='text-align: left; padding-left: 40px;'>
 					<br/><br/><br/>
 					<span style='font-size: 28pt;'>Security</span><br/><br/><br/>
 					<span style='font-size: 18pt;'>Hashed Password</span><br/>
@@ -131,7 +131,7 @@
 		
 		<div class='container my-index-article-detail' id='authorityPart'>
 			<div class='row my-index-article-row'>
-				<div class='col-md-6' id='authority-left' style='text-align: right; padding-right: 40px; padding-top: 20px;'>
+				<div class='col-md-6 desc' id='authority-left' style='text-align: right; padding-right: 40px; padding-top: 20px;'>
 					<span style='font-size: 28pt;'>Administration</span><br/><br/><br/>
 					<span style='font-size: 18pt;'>부적절한 게시글 신고</span><br/>
 					<span style='font-size: 12pt;'>신고 카테고리별 관리, 블럭 처리</span><br/><br/>
@@ -142,7 +142,7 @@
 					<span style='font-size: 18pt;'>(SUPER) 회원 관리</span><br/>
 					<span style='font-size: 12pt;'>SUPER 관리자는 회원 계정에 대한 블럭처리,<br/>권한 부여 등이 가능합니다</span>
 				</div>
-				<div class='col-md-6' id='authority-right'>
+				<div class='col-md-6 photo' id='authority-right'>
 				</div>
 			</div>
 		</div>

@@ -81,11 +81,7 @@ public class PageDto {
 		this.totBlock = (int) Math.ceil(this.totPage / (double) this.blockSize);
 		this.nowBlock = (int) Math.ceil(this.nowPage / (double) this.blockSize);
 		this.endNo = this.nowPage * this.listSize;
-		if (this.startNo > 0) {
-			this.startNo = (this.endNo - this.listSize + 1) - 1;
-		} else {
-			this.startNo = this.endNo - this.listSize + 1;
-		}
+		this.startNo = this.endNo - this.listSize;
 		if (this.endNo > this.totSize) this.endNo = this.totSize;
 		this.endPage = this.nowBlock * this.blockSize;
 		this.startPage = this.endPage - this.blockSize + 1;
@@ -121,11 +117,7 @@ public class PageDto {
 		this.totBlock = (int) Math.ceil(this.totPage / (double) this.blockSize);
 		this.nowBlock = (int) Math.ceil(this.nowPage / (double) this.blockSize);
 		this.endNo = this.nowPage * this.listSize;
-		if (this.startNo > 0) {
-			this.startNo = (this.endNo - this.listSize + 1) - 1;
-		} else {
-			this.startNo = this.endNo - this.listSize + 1;
-		}
+		this.startNo = this.endNo - this.listSize;
 		if (this.endNo > this.totSize) this.endNo = this.totSize;
 		this.endPage = this.nowBlock * this.blockSize;
 		this.startPage = this.endPage - this.blockSize + 1;
@@ -158,11 +150,7 @@ public class PageDto {
 		this.totBlock = (int) Math.ceil(this.totPage / (double) this.blockSize);
 		this.nowBlock = (int) Math.ceil(this.nowPage / (double) this.blockSize);
 		this.endNo = this.nowPage * this.listSize;
-		if (this.startNo > 0) {
-			this.startNo = (this.endNo - this.listSize + 1) - 1;
-		} else {
-			this.startNo = this.endNo - this.listSize + 1;
-		}
+		this.startNo = this.endNo - this.listSize;
 		if (this.endNo > this.totSize) this.endNo = this.totSize;
 		this.endPage = this.nowBlock * this.blockSize;
 		this.startPage = this.endPage - this.blockSize + 1;
@@ -196,11 +184,7 @@ public class PageDto {
 		this.totBlock = (int) Math.ceil(this.totPage / (double) this.blockSize);
 		this.nowBlock = (int) Math.ceil(this.nowPage / (double) this.blockSize);
 		this.endNo = this.nowPage * this.listSize;
-		if (this.startNo > 0) {
-			this.startNo = (this.endNo - this.listSize + 1) - 1;
-		} else {
-			this.startNo = this.endNo - this.listSize + 1;
-		}
+		this.startNo = this.endNo - this.listSize;
 		if (this.endNo > this.totSize) this.endNo = this.totSize;
 		this.endPage = this.nowBlock * this.blockSize;
 		this.startPage = this.endPage - this.blockSize + 1;
@@ -234,11 +218,7 @@ public class PageDto {
 		this.totBlock = (int) Math.ceil(this.totPage / (double) this.blockSize);
 		this.nowBlock = (int) Math.ceil(this.nowPage / (double) this.blockSize);
 		this.endNo = this.nowPage * this.listSize;
-		if (this.startNo > 0) {
-			this.startNo = (this.endNo - this.listSize + 1) - 1;
-		} else {
-			this.startNo = this.endNo - this.listSize + 1;
-		}
+		this.startNo = this.endNo - this.listSize;
 		if (this.endNo > this.totSize) this.endNo = this.totSize;
 		this.endPage = this.nowBlock * this.blockSize;
 		this.startPage = this.endPage - this.blockSize + 1;

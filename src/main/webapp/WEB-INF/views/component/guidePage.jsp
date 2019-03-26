@@ -12,6 +12,7 @@
 	    <div class="row" style='margin: 40px auto;'>
 	    	<div class='col-sm-1'></div>
 	        <div class="col-md-10" id='findIdBody'>
+	        	<span style='color: #dd5656; font-size: 8pt;'># notice<br/> 아직 반응형 웹을 적용하지 않아 768px 이하의 화면에서 제대로 보이지 않습니다.<br/>이 점 양해 부탁드립니다.</span><br/><br/>
 	            <div class="account-wall">
 	            	<div class='container' style='text-align: center;'>
 	                	<span id='guideTitle'>웹사이트 이용방법</span><hr style=''/><br/>

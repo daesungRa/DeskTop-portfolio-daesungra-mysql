@@ -26,6 +26,7 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardVo> getBoardList (Map<String, Object> pagenatedInputData) {
 		List<BoardVo> listByDate = null;
 		
+		logger.info("[board dao] startNo, endNo, listSize : " + pagenatedInputData.get("startNo") + ", " + pagenatedInputData.get("endNo") + ", " + pagenatedInputData.get("listSize"));
 		listByDate = sqlSession.selectList("board.getBoardList", pagenatedInputData);
 		
 		return listByDate;

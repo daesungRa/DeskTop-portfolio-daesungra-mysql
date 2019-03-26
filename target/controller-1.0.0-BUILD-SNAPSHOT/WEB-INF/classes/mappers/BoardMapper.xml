@@ -43,8 +43,25 @@
 					(SELECT COUNT(*) FROM DBOARD_THUMBUP bdt JOIN DBOARD bd3 ON bdt.pSerial = bd3.serial WHERE bd3.serial = bd.serial) thumbUpCnt
 				FROM DBOARD bd join DBOOK bk
 				ON bd.bookNo = bk.bookNo
-				<where>
-					<if test='category != null'>
+				<choose>
+					<when test='category != null and search == ""'>
+						WHERE bd.category = #{category} AND bd.isDelete = 0
+					</when>
+					<when test='search != "" and searchByContent == 1'>
+						WHERE bd.title like '%${search}%' AND bd.content like '%${search}%'
+					</when>
+					<when test='search != "" and searchByContent == 2'>
+						WHERE bd.title like '%${search}%'
+					</when>
+					<when test='search != "" and searchByContent == 3'>
+						WHERE bd.content like '%${search}%'
+					</when>
+					<when test='search != "" and searchByContent == 4'>
+						WHERE bd.userId like '%${search}%'
+					</when>
+				</choose>
+				<!-- <where>
+					<if test='category != null and search == ""'>
 						bd.category = #{category} AND bd.isDelete = 0
 					</if>
 					<if test='search != "" and searchByContent == 1'>
@@ -59,7 +76,7 @@
 					<if test='search != "" and searchByContent == 4'>
 						AND bd.userId like '%${search}%'
 					</if>
-				</where>
+				</where> -->
 				<trim prefix="ORDER BY">
 					<if test='searchBySort == 1'>
 						bd.bDate desc, bd.hit desc, thumbUpCnt desc
@@ -75,7 +92,7 @@
 					</if>
 				</trim>
 			) s
-		LIMIT ${startNo}, ${listSize}
+		LIMIT ${startNo}, ${endNo}
 	</select>
 	<!-- board list pagenation -->
 	<select id="boardListPagenation" parameterType="map" resultType="int">
@@ -83,7 +100,7 @@
 			FROM DBOARD bd JOIN DBOOK bk
 			ON bd.bookNo = bk.bookNo
 			<choose>
-				<when test='category != null'>
+				<when test='category != null and search == ""'>
 					WHERE bd.category = #{category} AND bd.isDelete = 0
 				</when>
 				<when test='search != "" and searchByContent == 1'>
